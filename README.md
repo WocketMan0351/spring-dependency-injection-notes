@@ -3,4 +3,5 @@ Contains notes covering best practices regarding various ways to inject dependen
 
 # SOLID Principles #
 
-Single
+Single Responsibility:
+  sdf
