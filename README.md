@@ -11,7 +11,7 @@ Contains notes covering best practices regarding various ways to inject dependen
 
 **Interface Segregation Principle:** Clients should not be forced to depend on methods that they do not use. In Java, this means avoid bloated interfaces. We don't want to force classes to implement methods that aren't used by them (i.e. dummy methods or stubs). Instead, segregate a large interface into mulitple role interfaces with different sets of behaviours. 
 
-**Dependency Inversion Principle:** High level modules should NOT depend on low level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions. Another way of saying this is avoid tightly coupled code. When one class knows explicitly about the design and implementation of another class, changes to one class raise the risk of breaking the other class. 
+**Dependency Inversion Principle:** High level modules should NOT depend on low level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions. Another way of saying this is avoid tightly coupled code. When one class knows explicitly about the design and implementation of another class, changes to one class raise the risk of breaking the other class. For example, a class should refer to an interface in its properties rather than a concrete class when possible.
 
 
 # Spring Bean Lifecycle #
