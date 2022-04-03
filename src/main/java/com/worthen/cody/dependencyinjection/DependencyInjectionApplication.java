@@ -94,13 +94,92 @@ public class DependencyInjectionApplication {
 		 * which one we want to use.
 		 * 
 		 * We set this property in our application.properties file by specifying
-		 * spring.profiles.active=EN so Spring knows which profile we wish to use. An
-		 * active profile is required.
+		 * spring.profiles.active=EN so Spring knows which profile we wish to use.
+		 * 
+		 * Either an active profile or a default profile is required (if no active
+		 * profile is set). The default is annotated by passing an array into
+		 * the @Primary like so: @Primary({"EN", default})
+		 * 
+		 * Multiple profiles can be active at once, just add a comma between them (no
+		 * space)
 		 */
 		System.out.println("------ Spring Profiles ------");
 		I18nController i18nController = (I18nController) applicationContext.getBean("i18nController");
 		System.out.println(i18nController.sayHello());
 		System.out.println();
+
+		// SPRING BEAN LIFECYCLE
+
+		/**
+		 * 1) Instantiate
+		 * 
+		 * 2) Populate Properties
+		 * 
+		 * 3) Call setBeanName of BeanNameAware
+		 * 
+		 * 4) Call setBeanFactory of BeanFactoryAware
+		 * 
+		 * 5) Call setApplicationContext of ApplicationContextAware
+		 * 
+		 * 6) Preinitialization (Bean PostProcessors)
+		 * 
+		 * 7) afterPropertiesSet of Initializing Beans
+		 * 
+		 * 8) Custom Init Method
+		 * 
+		 * 9) Post Initialization (BeanPostProcessors)
+		 * 
+		 * 10) Bean Ready to Use
+		 * 
+		 * [SOME TYPE OF TERMINATION EVENT]
+		 * 
+		 * 11) Container Shutdown
+		 * 
+		 * 12) Disposable Bean's destroy() -- Spring has 2 interfaces you can implement
+		 * for CALL BACK EVENTS (optional):
+		 * 
+		 * *** 1) InitializingBean.afterPropertiesSet() *** --- called after properties
+		 * are set
+		 * 
+		 * *** 2) DisposableBean.destroy() *** --- called during bean destruction in
+		 * shutdown
+		 * 
+		 * 13) Call Custom Destroy Method
+		 */
+
+		// LIFE CYCLE ANNOTATIONS
+
+		/**
+		 * Spring has 2 annotations we can use to hook into the bean life cycle:
+		 * 
+		 * 1) @PostConstruct annotated methods will be called after the bean has been
+		 * constructed, but before its returned to the requesting object.
+		 * 
+		 * 2) @PreDestory is called just before the bean is destroyed by the container.
+		 */
+
+		// BEAN POST PROCESSORS (probably won't use)
+
+		/**
+		 * Gives you a means to tap into the Spring context life cycle and interact with
+		 * beans as they are processed.
+		 * 
+		 * Implement interface BeanPostProcessor:
+		 * 
+		 * --- postProcessBeforeInitialization - called before bean initialization
+		 * method
+		 * 
+		 * --- postProcessAfterInitialization - called after bean initialization
+		 */
+
+		// SPRING AWARE INTERFACES
+
+		/**
+		 * Spring has over 14 "AWARE" INTERFACES
+		 * 
+		 * These are used to access the Spring Framework infrastructure. These are
+		 * largely used within the framework and rarely used by developers.
+		 */
 	}
 
 }
