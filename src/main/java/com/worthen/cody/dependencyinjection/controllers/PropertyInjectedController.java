@@ -12,8 +12,7 @@ import com.worthen.cody.dependencyinjection.services.GreetingService;
 public class PropertyInjectedController {
 
 	// @Primary can be used to define a default bean when multiple types are present
-	// and can be specified in the
-	// @Qualifier annotation of whatever aggregates it.
+	// and can be specified in the @Qualifier annotation of whatever aggregates it.
 
 	// @Qualifier takes precedence over @Primary
 
